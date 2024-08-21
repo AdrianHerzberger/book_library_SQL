@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    
+</body>
+
+    {% if book_details %}
+        <div>
+            <h2>Book title: {{ book_details.title }} </h2>
+            <p>ISBN: {{ book_details.isbn }} </p>
+            <p>Publication year: {{ book_details.publication_year }} </p>
+            <h2>Author: {{ book_details.author }} </h2>
+            <p>Birth date: {{ book_details.birth_date }} </p>
+            <p>Death date: {{ book_details.death_date }} </p>
+        </div>
+    {% endif %}
+
+</html>
