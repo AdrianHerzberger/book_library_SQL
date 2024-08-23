@@ -46,22 +46,22 @@ def home():
 
         query = Book.query
 
-    if sort_by_author == "author_id":
-        books = Book.query.order_by(Book.author_id).all()
-    else:
-        books = Book.query.all()
+        if sort_by_author == "author_name":
+            books = Book.query.join(Author).order_by(Author.name).all()
+        else:
+            books = Book.query.order_by(Book.title)
 
-    if sort_by_book == "book_id":
-        books = Book.query.all()
+        if sort_by_book == "book_title":
+            books = Book.query.all()
 
-    for book in books:
-        book.cover_image = get_book_cover(book.isbn)
+        for book in books:
+            book.cover_image = get_book_cover(book.isbn)
 
-    if search_by_book_title:
-        book_query = query.filter(Book.title.ilike(f"%{search_by_book_title}%"))
-        return render_template(
-            "search_book.html", book_query=book_query, cover=book.cover_image
-        )
+        if search_by_book_title:
+            book_query = query.filter(Book.title.ilike(f"%{search_by_book_title}%"))
+            return render_template(
+                "search_book.html", book_query=book_query, cover=book.cover_image
+            )
 
     return render_template("home.html", books=books)
 

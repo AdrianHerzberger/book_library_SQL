@@ -8,6 +8,16 @@
 </head>
 
 <body>
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
   
   <form action="/add_author" method="POST">
     <label for="name">Author Name:</label>
@@ -21,6 +31,10 @@
 
     <input type="submit" value="Add Author">
   </form>
+
+  <a href="/">
+    <button type="button">Homepage</button>
+  </a>
 
 </body>
 

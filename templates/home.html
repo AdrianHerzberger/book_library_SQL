@@ -12,46 +12,54 @@
 
   <div class="sorting-container">
     <form action="/" method="GET">
-      <label for="author_id">Sort by Author:</label>
-      <button id="author_id" name="sort_by_author" value="author_id">Sort by Author</button>
-    </form>
-  
-    <form action="/" method="='GET">
-      <label for="book_id">Sort by Author:</label>
-      <button id="book_id" name="sort_by_book" value="book_id">Sort by Book</button>
+      <label for="author_name">Sort by Author:</label>
+      <button id="author_name" name="sort_by_author" value="author_name">Sort by Author</button>
     </form>
 
     <form action="/" method="GET">
-      <label for="book_title">Search by Book Ttile:</label>
-      <input type="text" id="book_title" name="search_book_title">
+      <label for="book_title">Sort by Book:</label>
+      <button id="book_title" name="sort_by_book" value="book_title">Sort by Book</button>
+    </form>
+
+    <form action="/" method="GET">
+      <label for="search_book_title">Search by Book Title:</label>
+      <input type="text" id="search_book_title" name="search_by_book_title">
       <button type="submit">Search</button>
     </form>
+
+    <a href="/add_author">
+      <button type="button">Add Author</button>
+    </a>
+    
+    <a href="/add_book">
+      <button type="button">Add Book</button>
+    </a>
   </div>
 
 
   {% if books %}
-    <ul>
-      {% for book in books %}
-      <li>
-        <div class="book-list">
-          <img src="{{ book.cover_image }}" alt="Cover Image" style="height: 150px;">
-          <a href="/book/{{ book.id }}/details">
-            <strong style="cursor: pointer;">{{ book.title }}</strong>
-          </a> by {{ book.author.name }}
-          <div class="button-action">
-            <form action="/book/{{ book.id }}/delete" method="POST">
-              <button type="submit">Delete Book</button>
-            </form>
-            <form action="/book/{{ book.author.id }}/delete" method="POST">
-              <button type="submit">Delete Author</button>
-            </form>
-          </div>
+  <ul>
+    {% for book in books %}
+    <li>
+      <div class="book-list">
+        <img src="{{ book.cover_image }}" alt="Cover Image" style="height: 150px;">
+        <a href="/book/{{ book.id }}/details">
+          <strong style="cursor: pointer;">{{ book.title }}</strong>
+        </a> by {{ book.author.name }}
+        <div class="button-action">
+          <form action="/book/{{ book.id }}/delete" method="POST">
+            <button type="submit">Delete Book</button>
+          </form>
+          <form action="/book/{{ book.author.id }}/delete" method="POST">
+            <button type="submit">Delete Author</button>
+          </form>
         </div>
-      </li>
-      {% endfor %}
-    </ul>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
   {% else %}
-    <p>No books available.</p>
+  <p>No books available.</p>
   {% endif %}
 
 </body>
